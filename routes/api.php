@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicaController;
 use App\Http\Controllers\AuthController;
@@ -11,6 +12,6 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user', fn(Request $request) => $request->user());
-        Route::post('/logout', 'logout');
+        Route::post('/logout',  [AuthController::class, 'logout']);
     });
 });
